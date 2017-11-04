@@ -20,6 +20,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		BuildVersion_BuildVersioningStyle = Increment.Increment.YearMonthStamp.DayStamp
 		SolutionGuid = {A3D20FF9-DB04-466B-9197-66EE3C2FF657}
+		BuildVersion_StartDate = 2017/1/1
+		BuildVersion_UpdateAssemblyVersion = True
+		BuildVersion_UpdateFileVersion = True
+		BuildVersion_AssemblyInfoFilename = CrapsWPF\Properties\AssemblyInfo.cs
+		BuildVersion_UseGlobalSettings = True
+		BuildVersion_UseUniversalClock = True
 	EndGlobalSection
 EndGlobal
