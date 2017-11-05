@@ -13,7 +13,7 @@
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="2" Color="#FF787878" Opacity="0.75" ShadowDepth="2"/>
             </Grid.Effect>
-            <Button x:Name="btn_RollDice" Content="_Roll Dice"  Margin="20,20,0,0" FontWeight="SemiBold" FontStretch="Expanded" HorizontalAlignment="Left" Width="109" Height="35" VerticalAlignment="Top">
+            <Button x:Name="btn_RollDice" Content="_Roll Dice"  Click="Roll_Click"  Margin="20,20,0,0" FontWeight="SemiBold" FontStretch="Expanded" HorizontalAlignment="Left" Width="109" Height="35" VerticalAlignment="Top" IsEnabled="False">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
                 </Button.Effect>
@@ -24,7 +24,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button x:Name="btn_PlayAgain" Content="_Play Again"  Margin="20,0,0,20" FontWeight="SemiBold" FontStretch="Expanded" HorizontalAlignment="Left" Width="109" Height="35" VerticalAlignment="Bottom">
+            <Button x:Name="btn_PlayAgain" Content="_Play Again"  Margin="20,0,0,20" FontWeight="SemiBold" FontStretch="Expanded" HorizontalAlignment="Left" Width="109" Height="35" VerticalAlignment="Bottom" IsEnabled="False">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
                 </Button.Effect>
@@ -94,9 +94,9 @@
                 <DropShadowEffect Color="#FF939393" Opacity="0.75" BlurRadius="2" ShadowDepth="2"/>
             </Menu.Effect>
             <MenuItem x:Name="game" Header="_Game" >
-                <MenuItem x:Name="startGame" Header="_Start" />
+                <MenuItem x:Name="startGame" Header="_Start" Click="Start_Click"/>
                 <Separator />
-                <MenuItem x:Name="exitGame" Header="_Exit" />
+                <MenuItem x:Name="exitGame" Header="_Exit" Click="Exit_Click"/>
             </MenuItem>
             <MenuItem x:Name="help" Header="_Help">
                 <MenuItem x:Name="rules" Header="_About" />
