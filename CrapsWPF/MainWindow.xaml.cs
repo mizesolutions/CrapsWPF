@@ -30,18 +30,18 @@ namespace CrapsWPF
         private void Start_Click(object sender, RoutedEventArgs e)
         {
             btn_RollDice.IsEnabled = true;
+            btn_PlayAgain.IsEnabled = false;
             startGame.IsEnabled = false;
             resetGame.IsEnabled = true;
             gameWinner.Content = "";
+            playerText1.Text = "";
+            houseText1.Text = "";
             theGame = new Game();
         }
 
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
-            die1Text.Text = "";
-            die2Text.Text = "";
-            dieTotal.Text = "";
-            pointText.Text = "";
+            ClearTextBoxes();
             Start_Click(sender, e);
         }
 
@@ -58,6 +58,23 @@ namespace CrapsWPF
             die2Text.Text = "" + theGame.GetDiceValue(2);
             dieTotal.Text = "" + theGame.DiceTotal;
             this.CheckRoll();
+        }
+
+        private void PlayAgain_Click(object sender, RoutedEventArgs e)
+        {
+            ClearTextBoxes();
+            theGame.ResetRollPoint();
+            btn_PlayAgain.IsEnabled = false;
+            btn_RollDice.IsEnabled = true;
+            gameWinner.Content = "";
+        }
+
+        private void ClearTextBoxes()
+        {
+            die1Text.Text = "";
+            die2Text.Text = "";
+            dieTotal.Text = "";
+            pointText.Text = "";
         }
 
         private void CheckRoll()
@@ -85,7 +102,7 @@ namespace CrapsWPF
             }
             else
             {
-                gameWinner.Content = "House Wins!";
+                gameWinner.Content = "Loser!";
             }
         }
 

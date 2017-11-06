@@ -136,5 +136,11 @@ namespace CrapsWPF
                 return house.Points.ToString();
         }
 
+        public void ResetRollPoint()
+        {
+            roll.RollPoint = 0;
+            roll.PointActive = false;
+        }
+
     }
 }

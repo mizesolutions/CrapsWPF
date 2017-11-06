@@ -22,27 +22,31 @@ namespace CrapsWPF
 
         public bool CheckRoll(Game game)
         {
-            if(!PointActive)
+            if(PointActive)
             {
-                return RegularRoll(game);
+                return PointRoll(game);
             }
             else
-                return PointRoll(game);
+                return RegularRoll(game); 
         }
 
         private bool RegularRoll(Game game)
         {
-            if (game.DiceTotal != 2 || game.DiceTotal != 3 || game.DiceTotal != 7 || game.DiceTotal != 11 || game.DiceTotal != 12)
+            if (game.DiceTotal == 2 || game.DiceTotal == 3 || game.DiceTotal == 12)
             {
-                RollPoint = game.DiceTotal;
-                return PointActive = true;
+                return HouseWin(game);
             }
             else if (game.DiceTotal == 7 || game.DiceTotal == 11)
             {
                 return PlayerWin(game);
             }
             else
-                return HouseWin(game);
+            {
+                RollPoint = game.DiceTotal;
+                PointActive = true;
+                return true;
+            }
+                
         }
 
         private bool PointRoll(Game game)
