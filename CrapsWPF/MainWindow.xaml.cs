@@ -20,9 +20,44 @@ namespace CrapsWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Game theGame;
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        private void Start_Click(object sender, RoutedEventArgs e)
+        {
+            btn_RollDice.IsEnabled = true;
+            startGame.IsEnabled = false;
+            theGame = new Game();
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void Roll_Click(object sender, RoutedEventArgs e)
+        {
+            btn_RollDice.IsEnabled = false;
+            theGame.RollDice();
+            die1Text.Text = "" + theGame.GetDiceValue(1);
+            die2Text.Text = "" + theGame.GetDiceValue(2);
+            dieTotal.Text = "" + theGame.DiceTotal;
+            this.CheckRoll();
+        }
+
+        private void CheckRoll()
+        {
+            if (theGame.CheckRoll())
+            {
+                btn_RollDice.IsEnabled = true;
+
+            }
+        }
+
+
     }
 }

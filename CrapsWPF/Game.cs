@@ -17,8 +17,8 @@ namespace CrapsWPF
 
         public Game()
         {
-            dice1 = new Dice();
-            dice2 = new Dice();
+            dice1 = new Dice(1002);
+            dice2 = new Dice(77);
             player = new Player();
             house = new Player();
             roll = new Roll();
@@ -29,8 +29,8 @@ namespace CrapsWPF
 
         public Game(int bank)
         {
-            dice1 = new Dice();
-            dice2 = new Dice();
+            dice1 = new Dice(3301);
+            dice2 = new Dice(42);
             try
             {
                 player = new Player(bank);
@@ -57,15 +57,18 @@ namespace CrapsWPF
             DiceTotal = dice1.Value + dice2.Value;
         }
 
-        public void CheckRoll()
+        public bool CheckRoll()
         {
             if (roll.CheckRoll(this))
             {
-                this.RollDice();
-                this.CheckRoll();
+                return true;
             }
             else
+            {
                 GameOver = true;
+                return false;
+            }
+                
         }
 
         public bool CheckWin()
@@ -76,6 +79,16 @@ namespace CrapsWPF
         public int CheckBank()
         {
             return player.Bank;
+        }
+
+        public int GetDiceValue(int type)
+        {
+            if (type == 1)
+            {
+                return dice1.Value;
+            }
+            else
+                return dice2.Value;
         }
 
         public void SetPoints(int type)

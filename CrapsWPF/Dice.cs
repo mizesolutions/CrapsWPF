@@ -12,9 +12,9 @@ namespace CrapsWPF
         private int value;
         
 
-        public Dice()
+        public Dice(int seed)
         {
-            rand = new Random();
+            rand = new Random(seed);
             Value = 0;
         }
 
