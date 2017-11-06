@@ -17,8 +17,8 @@ namespace CrapsWPF
 
         public Game()
         {
-            dice1 = new Dice(1002);
-            dice2 = new Dice(77);
+            dice1 = new Dice((int)DateTime.Now.Ticks + 1002);
+            dice2 = new Dice((int)DateTime.Now.Ticks - 77);
             player = new Player();
             house = new Player();
             roll = new Roll();
@@ -29,8 +29,8 @@ namespace CrapsWPF
 
         public Game(int bank)
         {
-            dice1 = new Dice(3301);
-            dice2 = new Dice(42);
+            dice1 = new Dice((int)DateTime.Now.Ticks -3301);
+            dice2 = new Dice((int)DateTime.Now.Ticks + 42);
             try
             {
                 player = new Player(bank);
@@ -119,6 +119,21 @@ namespace CrapsWPF
         {
             player.Win = value;
             house.Win = !value;
+        }
+
+        public int RollPoint()
+        {
+            return roll.RollPoint;
+        }
+
+        public string GetPoints(int type)
+        {
+            if (type == 0)
+            {
+                return player.Points.ToString();
+            }
+            else
+                return house.Points.ToString();
         }
 
     }

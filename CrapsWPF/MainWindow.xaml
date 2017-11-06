@@ -9,7 +9,7 @@
         Title="Game Of Craps" Height="437" Width="524" HorizontalAlignment="Center" HorizontalContentAlignment="Center">
     <Grid Background="#FFAEAEAE">
         <Border Background="#FFAEAEAE" BorderBrush="#FF6E6E6E" BorderThickness="2" Margin="5,20,5,5" />
-        <Grid Background="White" Margin="5,20,5,5">
+        <Grid x:Name="gameBoard" Background="White" Margin="5,20,5,5">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="2" Color="#FF787878" Opacity="0.75" ShadowDepth="2"/>
             </Grid.Effect>
@@ -83,7 +83,7 @@
                 </TextBox.Effect>
             </TextBox>
             <Label Content="Point" HorizontalAlignment="Left" Margin="20,79,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-            <Label x:Name="gameWinner" Content="Label"  HorizontalAlignment="Left" Height="100" Margin="20,200,0,0" VerticalAlignment="Top" Width="109" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontStretch="Expanded" Foreground="Red">
+            <Label x:Name="gameWinner" HorizontalAlignment="Left" Height="100" Margin="20,200,0,0" VerticalAlignment="Top" Width="175" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontStretch="Expanded" Foreground="Red">
                 <Label.Effect>
                     <DropShadowEffect BlurRadius="2" Color="#FF9C9C9C" Opacity="0.75" ShadowDepth="2"/>
                 </Label.Effect>
@@ -95,6 +95,7 @@
             </Menu.Effect>
             <MenuItem x:Name="game" Header="_Game" >
                 <MenuItem x:Name="startGame" Header="_Start" Click="Start_Click"/>
+                <MenuItem x:Name="resetGame" Header="_Reset" Click="Reset_Click" IsEnabled="False" />
                 <Separator />
                 <MenuItem x:Name="exitGame" Header="_Exit" Click="Exit_Click"/>
             </MenuItem>

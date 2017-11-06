@@ -31,7 +31,18 @@ namespace CrapsWPF
         {
             btn_RollDice.IsEnabled = true;
             startGame.IsEnabled = false;
+            resetGame.IsEnabled = true;
+            gameWinner.Content = "";
             theGame = new Game();
+        }
+
+        private void Reset_Click(object sender, RoutedEventArgs e)
+        {
+            die1Text.Text = "";
+            die2Text.Text = "";
+            dieTotal.Text = "";
+            pointText.Text = "";
+            Start_Click(sender, e);
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -54,7 +65,27 @@ namespace CrapsWPF
             if (theGame.CheckRoll())
             {
                 btn_RollDice.IsEnabled = true;
+                pointText.Text = "" + theGame.RollPoint();
+            }
+            else
+            {
+                DisplayWin();
+                playerText1.Text = theGame.GetPoints(0);
+                houseText1.Text = theGame.GetPoints(1);
+                btn_PlayAgain.IsEnabled = true;
 
+            }
+        }
+
+        private void DisplayWin()
+        {
+            if(theGame.CheckWin())
+            {
+                gameWinner.Content = "Winner!";
+            }
+            else
+            {
+                gameWinner.Content = "House Wins!";
             }
         }
 
