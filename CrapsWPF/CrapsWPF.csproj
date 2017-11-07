@@ -62,6 +62,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Roll.cs" />
     <Compile Include="Dice.cs" />

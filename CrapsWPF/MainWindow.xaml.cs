@@ -27,6 +27,82 @@ namespace CrapsWPF
             InitializeComponent();
         }
 
+#region CommandBindings
+
+        void Start_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = startGame.IsEnabled;
+        }
+
+        void Start_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Start_Click(sender, e);
+        }
+
+        void Reset_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = resetGame.IsEnabled;
+        }
+
+        void Reset_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Reset_Click(sender, e);
+        }
+
+        void Exit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = exitGame.IsEnabled;
+        }
+
+        void Exit_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Exit_Click(sender, e);
+        }
+
+        void About_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = about.IsEnabled;
+        }
+
+        void About_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            //About_Click(sender, e);
+        }
+
+        void Rules_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = rules.IsEnabled;
+        }
+
+        void Rules_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            //Rules_Click(sender, e);
+        }
+
+        void Roll_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = btn_RollDice.IsEnabled;
+        }
+
+        void Roll_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Roll_Click(sender, e);
+        }
+
+        void PlayAgain_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = btn_PlayAgain.IsEnabled;
+        }
+
+        void PlayAgain_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            PlayAgain_Click(sender, e);
+        }
+
+#endregion
+
+#region ClickMethods
+
         private void Start_Click(object sender, RoutedEventArgs e)
         {
             btn_RollDice.IsEnabled = true;
@@ -69,6 +145,10 @@ namespace CrapsWPF
             gameWinner.Content = "";
         }
 
+        #endregion
+
+#region HelperMethods
+
         private void ClearTextBoxes()
         {
             die1Text.Text = "";
@@ -105,7 +185,8 @@ namespace CrapsWPF
                 gameWinner.Content = "Loser!";
             }
         }
-
+#endregion
 
     }
+
 }
