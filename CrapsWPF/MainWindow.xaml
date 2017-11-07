@@ -6,130 +6,144 @@
 		xmlns:local="clr-namespace:CrapsWPF"
         mc:Ignorable="d"
 		Icon="reddice.ico"
-		Title="Game Of Craps" Height="447" Width="524" HorizontalAlignment="Center" HorizontalContentAlignment="Center">
+		Title="Game Of Craps" Height="447" Width="524" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center">
     <Window.InputBindings>
         <KeyBinding Command="local:Commands.Start" Modifiers="Control" Key="S"/>
         <KeyBinding Command="local:Commands.Reset" Modifiers="Control" Key="T"/>
+        <KeyBinding Command="local:Commands.Exit" Modifiers="Control" Key="X"/>
+        <KeyBinding Command="local:Commands.About" Modifiers="Control" Key="A"/>
+        <KeyBinding Command="local:Commands.Rules" Modifiers="Control" Key="L"/>
+        <KeyBinding Command="local:Commands.Roll" Modifiers="Control" Key="R"/>
+        <KeyBinding Command="local:Commands.PlayAgain" Modifiers="Control" Key="P"/>
     </Window.InputBindings>
     <Window.CommandBindings>
         <CommandBinding Command="local:Commands.Start" CanExecute="Start_CanExecute" Executed="Start_Executed" />
-        <!--<CommandBinding Command="{x:Static local:Commands.Bye}" CanExecute="Bye_CanExecute" Executed="Bye_Executed" />
-        <CommandBinding  Command="{x:Static local:Commands.Exit}" CanExecute="Exit_CanExecute" Executed="Exit_Executed" />-->
+        <CommandBinding Command="local:Commands.Reset" CanExecute="Reset_CanExecute" Executed="Reset_Executed" />
+        <CommandBinding Command="local:Commands.Exit" CanExecute="Exit_CanExecute" Executed="Exit_Executed" />
+        <CommandBinding Command="local:Commands.About" CanExecute="About_CanExecute" Executed="About_Executed" />
+        <CommandBinding Command="local:Commands.Rules" CanExecute="Rules_CanExecute" Executed="Rules_Executed" />
+        <CommandBinding Command="local:Commands.Roll" CanExecute="Roll_CanExecute" Executed="Roll_Executed" />
+        <CommandBinding Command="local:Commands.PlayAgain" CanExecute="PlayAgain_CanExecute" Executed="PlayAgain_Executed" />
     </Window.CommandBindings>
     <Grid Background="#FFAEAEAE">
-		<Border Background="#FFAEAEAE" BorderBrush="#FF6E6E6E" BorderThickness="2" Margin="5,20,5,5" />
-		<Grid x:Name="gameBoard" Background="White" Margin="5,20,5,5">
-			<Grid.Effect>
-				<DropShadowEffect BlurRadius="2" Color="#FF787878" Opacity="0.75" ShadowDepth="2"/>
-			</Grid.Effect>
-			<Button x:Name="btn_RollDice" Content="_Roll Dice"  Click="Roll_Click" Margin="20,20,0,0" FontWeight="SemiBold" FontStretch="Expanded" HorizontalAlignment="Left" Width="109" Height="35" VerticalAlignment="Top" IsEnabled="False">
-				<Button.Effect>
-					<DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
-				</Button.Effect>
-				<Button.Background>
-					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-						<GradientStop Color="#FFB0B0B0" Offset="1"/>
-						<GradientStop Color="WhiteSmoke" Offset="0.49"/>
-					</LinearGradientBrush>
-				</Button.Background>
-			</Button>
-			<Button x:Name="btn_PlayAgain" Content="_Play Again" Click="PlayAgain_Click" Margin="20,0,0,20" FontWeight="SemiBold" FontStretch="Expanded" HorizontalAlignment="Left" Width="109" Height="35" VerticalAlignment="Bottom" IsEnabled="False">
-				<Button.Effect>
-					<DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
-				</Button.Effect>
-				<Button.Background>
-					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-						<GradientStop Color="#FFB0B0B0" Offset="1"/>
-						<GradientStop Color="WhiteSmoke" Offset="0.49"/>
-					</LinearGradientBrush>
-				</Button.Background>
-			</Button>
-			<GroupBox x:Name="grp_Bets" Header="Bets" HorizontalAlignment="Right" Height="101" Margin="0,0,189,16" VerticalAlignment="Bottom" Width="161" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White">
-				<Grid Margin="2">
-				</Grid>
-			</GroupBox>
-			<GroupBox x:Name="grp_CurrentRoll" Header="Current Roll" HorizontalAlignment="Right" Height="150" Margin="0,10,20,0" VerticalAlignment="Top" Width="161" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White">
-				<Grid Margin="2">
-					<Label Content="Die 1" HorizontalAlignment="Right" Margin="0,13,80,0" VerticalAlignment="Top" FontWeight="Bold" VerticalContentAlignment="Center" FontSize="12"/>
-					<TextBox x:Name="die1Text" IsReadOnly="True" HorizontalAlignment="Right" Height="23" Margin="0,14,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" VerticalContentAlignment="Center" Background="#FFEAEAEA" >
-						<TextBox.Effect>
-							<DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
-						</TextBox.Effect>
-					</TextBox>
-					<Label Content="Die 2" HorizontalAlignment="Right" Margin="0,0,80,46" VerticalAlignment="Bottom" FontWeight="Bold" VerticalContentAlignment="Center" FontSize="12"/>
-					<TextBox x:Name="die2Text" IsReadOnly="True" Margin="0,0,14,48" TextWrapping="Wrap" HorizontalAlignment="Right" Width="59" Height="23" VerticalAlignment="Bottom" IsTabStop="False" IsUndoEnabled="False" AllowDrop="False" VerticalContentAlignment="Center" Background="#FFEAEAEA">
-						<TextBox.Effect>
-							<DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
-						</TextBox.Effect>
-					</TextBox>
-					<Label Content="Total" Margin="0,0,81,8" FontWeight="Bold" HorizontalAlignment="Right" Width="38" Height="26" VerticalAlignment="Bottom" VerticalContentAlignment="Center" FontSize="12"/>
-					<TextBox x:Name="dieTotal" IsReadOnly="True" Margin="0,0,14,10" TextWrapping="Wrap" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" VerticalContentAlignment="Center" Background="#FFEAEAEA">
-						<TextBox.Effect>
-							<DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
-						</TextBox.Effect>
-					</TextBox>
-				</Grid>
-			</GroupBox>
-			<GroupBox x:Name="grp_ScoreBoard" Header="Score Board" HorizontalAlignment="Right" Height="101" Margin="0,164,20,0" VerticalAlignment="Top" Width="161" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White">
-				<Grid Margin="2">
-					<Label Content="Player" HorizontalAlignment="Right" Margin="0,4,80,0" VerticalAlignment="Top" FontWeight="Bold"/>
-					<TextBox x:Name="playerText1" IsReadOnly="True" HorizontalAlignment="Right" Margin="0,8,14,0" TextWrapping="Wrap" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" Height="23" VerticalAlignment="Top" Background="#FFEAEAEA" >
-						<TextBox.Effect>
-							<DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
-						</TextBox.Effect>
-					</TextBox>
-					<Label Content="House" HorizontalAlignment="Right" Margin="0,43,79,0" VerticalAlignment="Top" FontWeight="Bold" VerticalContentAlignment="Center"/>
-					<TextBox x:Name="houseText1" IsReadOnly="True" Margin="0,46,14,0" TextWrapping="Wrap" HorizontalAlignment="Right" Width="59" Height="23" VerticalAlignment="Top" IsTabStop="False" IsUndoEnabled="False" AllowDrop="False" VerticalContentAlignment="Center" Background="#FFEAEAEA">
-						<TextBox.Effect>
-							<DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
-						</TextBox.Effect>
-					</TextBox>
-				</Grid>
-			</GroupBox>
-			<TextBox x:Name="pointText" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="70,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" VerticalContentAlignment="Center" FontWeight="Bold" IsUndoEnabled="False" IsTabStop="False" Background="#FFEAEAEA">
-				<TextBox.Effect>
-					<DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
-				</TextBox.Effect>
-			</TextBox>
-			<Label Content="Point" HorizontalAlignment="Left" Margin="20,79,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-			<Label x:Name="gameWinner" HorizontalAlignment="Left" Height="60" Margin="20,0,0,62" VerticalAlignment="Bottom" Width="109" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontStretch="Expanded" Foreground="Red">
-				<Label.Effect>
-					<DropShadowEffect BlurRadius="2" Color="#FF9C9C9C" Opacity="0.75" ShadowDepth="2"/>
-				</Label.Effect>
-			</Label>
-			<GroupBox x:Name="grp_Bank" Header="Bank" HorizontalAlignment="Right" Height="101" Margin="0,0,20,16" VerticalAlignment="Bottom" Width="161" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White">
-				<Grid Margin="2">
-					<Label Content="Player" HorizontalAlignment="Right" Margin="0,4,80,0" VerticalAlignment="Top" FontWeight="Bold"/>
-					<TextBox x:Name="playerText2" IsReadOnly="True" HorizontalAlignment="Right" Margin="0,8,14,0" TextWrapping="Wrap" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" Height="23" VerticalAlignment="Top" Background="#FFEAEAEA" >
-						<TextBox.Effect>
-							<DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
-						</TextBox.Effect>
-					</TextBox>
-					<Label Content="House" HorizontalAlignment="Right" Margin="0,43,79,0" VerticalAlignment="Top" FontWeight="Bold" VerticalContentAlignment="Center"/>
-					<TextBox x:Name="houseText2" IsReadOnly="True" Margin="0,46,14,0" TextWrapping="Wrap" HorizontalAlignment="Right" Width="59" Height="23" VerticalAlignment="Top" IsTabStop="False" IsUndoEnabled="False" AllowDrop="False" VerticalContentAlignment="Center" Background="#FFEAEAEA">
-						<TextBox.Effect>
-							<DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
-						</TextBox.Effect>
-					</TextBox>
-				</Grid>
-			</GroupBox>
+        <Border Background="#FFAEAEAE" BorderBrush="#FF6E6E6E" BorderThickness="2" Margin="5,20,5,5" />
+        <Grid x:Name="gameBoard" Background="White" Margin="5,20,5,5">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="2" Color="#FF787878" Opacity="0.75" ShadowDepth="2"/>
+            </Grid.Effect>
+            <Button x:Name="btn_RollDice" Content="_Roll Dice"  Click="Roll_Click" Margin="20,20,0,0" FontWeight="SemiBold" FontStretch="Expanded" HorizontalAlignment="Left" Width="109" Height="35" VerticalAlignment="Top" IsEnabled="False">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
+                </Button.Effect>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFB0B0B0" Offset="1"/>
+                        <GradientStop Color="WhiteSmoke" Offset="0.49"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btn_PlayAgain" Content="_Play Again" Click="PlayAgain_Click" Margin="20,0,0,20" FontWeight="SemiBold" FontStretch="Expanded" HorizontalAlignment="Left" Width="109" Height="35" VerticalAlignment="Bottom" IsEnabled="False">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
+                </Button.Effect>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFB0B0B0" Offset="1"/>
+                        <GradientStop Color="WhiteSmoke" Offset="0.49"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <GroupBox x:Name="grp_Bets" Header="Bets" HorizontalAlignment="Right" Height="101" Margin="0,0,193,16" VerticalAlignment="Bottom" Width="135" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White" >
+                <Grid Margin="2">
+                    <TextBox x:Name="playerBet" HorizontalAlignment="Right" Margin="0,0,12,12" Width="60" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" Height="23" VerticalAlignment="Bottom" Background="White" Text="10" ToolTip="Default Wager Is 10" IsEnabled="False" MouseLeave="playerBet_MouseLeave" >
+                        <TextBox.Effect>
+                            <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
+                        </TextBox.Effect>
+                    </TextBox>
+                    <Label x:Name="betLabel" Content="Enter Your Wager:" HorizontalAlignment="Right" Margin="0,6,4,0" VerticalAlignment="Top" Width="113"/>
 
-		</Grid>
-		<Menu Background="#FFE4E4E4" Height="20" VerticalAlignment="Top">
-			<Menu.Effect>
-				<DropShadowEffect Color="#FF939393" Opacity="0.75" BlurRadius="2" ShadowDepth="2"/>
-			</Menu.Effect>
-			<MenuItem x:Name="game" Header="_Game" >
-				<MenuItem x:Name="startGame" Header="_Start" InputGestureText="Ctrl+S" Click="Start_Click"/>
-				<MenuItem x:Name="resetGame" Header="_Reset" InputGestureText="Ctrl+T" Click="Reset_Click" IsEnabled="False" />
-				<Separator />
-				<MenuItem x:Name="exitGame" Header="_Exit" InputGestureText="Ctrl+X" Click="Exit_Click"/>
-			</MenuItem>
-			<MenuItem x:Name="help" Header="_Help">
-                <MenuItem x:Name="about" Header="_About" InputGestureText="Ctrl+A" IsEnabled="True"/>
-                <MenuItem x:Name="rules" Header="_Rules" InputGestureText="Ctrl+L" IsEnabled="True"/>
-			</MenuItem>
-
-		</Menu>
-	</Grid>
+                </Grid>
+            </GroupBox>
+            <GroupBox x:Name="grp_CurrentRoll" Header="Current Roll" HorizontalAlignment="Right" Height="150" Margin="0,10,20,0" VerticalAlignment="Top" Width="161" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White">
+                <Grid Margin="2">
+                    <Label Content="Die 1" HorizontalAlignment="Right" Margin="0,13,80,0" VerticalAlignment="Top" FontWeight="Bold" VerticalContentAlignment="Center" FontSize="12"/>
+                    <TextBox x:Name="die1Text" IsReadOnly="True" HorizontalAlignment="Right" Height="23" Margin="0,14,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" VerticalContentAlignment="Center" Background="#FFEAEAEA" >
+                        <TextBox.Effect>
+                            <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
+                        </TextBox.Effect>
+                    </TextBox>
+                    <Label Content="Die 2" HorizontalAlignment="Right" Margin="0,0,80,46" VerticalAlignment="Bottom" FontWeight="Bold" VerticalContentAlignment="Center" FontSize="12"/>
+                    <TextBox x:Name="die2Text" IsReadOnly="True" Margin="0,0,14,48" TextWrapping="Wrap" HorizontalAlignment="Right" Width="59" Height="23" VerticalAlignment="Bottom" IsTabStop="False" IsUndoEnabled="False" AllowDrop="False" VerticalContentAlignment="Center" Background="#FFEAEAEA">
+                        <TextBox.Effect>
+                            <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
+                        </TextBox.Effect>
+                    </TextBox>
+                    <Label Content="Total" Margin="0,0,81,8" FontWeight="Bold" HorizontalAlignment="Right" Width="38" Height="26" VerticalAlignment="Bottom" VerticalContentAlignment="Center" FontSize="12"/>
+                    <TextBox x:Name="dieTotal" IsReadOnly="True" Margin="0,0,14,10" TextWrapping="Wrap" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" VerticalContentAlignment="Center" Background="#FFEAEAEA">
+                        <TextBox.Effect>
+                            <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
+                        </TextBox.Effect>
+                    </TextBox>
+                </Grid>
+            </GroupBox>
+            <GroupBox x:Name="grp_ScoreBoard" Header="Score Board" HorizontalAlignment="Right" Height="101" Margin="0,164,20,0" VerticalAlignment="Top" Width="161" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White">
+                <Grid Margin="2">
+                    <Label Content="Player" HorizontalAlignment="Right" Margin="0,4,80,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <TextBox x:Name="playerText1" IsReadOnly="True" HorizontalAlignment="Right" Margin="0,8,14,0" TextWrapping="Wrap" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" Height="23" VerticalAlignment="Top" Background="#FFEAEAEA" >
+                        <TextBox.Effect>
+                            <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
+                        </TextBox.Effect>
+                    </TextBox>
+                    <Label Content="House" HorizontalAlignment="Right" Margin="0,43,79,0" VerticalAlignment="Top" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                    <TextBox x:Name="houseText1" IsReadOnly="True" Margin="0,46,14,0" TextWrapping="Wrap" HorizontalAlignment="Right" Width="59" Height="23" VerticalAlignment="Top" IsTabStop="False" IsUndoEnabled="False" AllowDrop="False" VerticalContentAlignment="Center" Background="#FFEAEAEA">
+                        <TextBox.Effect>
+                            <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
+                        </TextBox.Effect>
+                    </TextBox>
+                </Grid>
+            </GroupBox>
+            <TextBox x:Name="pointText" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="70,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" VerticalContentAlignment="Center" FontWeight="Bold" IsUndoEnabled="False" IsTabStop="False" Background="#FFEAEAEA">
+                <TextBox.Effect>
+                    <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
+                </TextBox.Effect>
+            </TextBox>
+            <Label Content="Point" HorizontalAlignment="Left" Margin="20,79,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Label x:Name="gameWinner" HorizontalAlignment="Left" Height="80" Margin="20,0,0,171" VerticalAlignment="Bottom" Width="293" FontSize="48" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontStretch="Expanded" Foreground="Red">
+                <Label.Effect>
+                    <DropShadowEffect BlurRadius="2" Color="#FF9C9C9C" Opacity="0.75" ShadowDepth="2"/>
+                </Label.Effect>
+            </Label>
+            <GroupBox x:Name="grp_Bank" Header="Bank" HorizontalAlignment="Right" Height="101" Margin="0,0,20,16" VerticalAlignment="Bottom" Width="161" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White">
+                <Grid Margin="2">
+                    <Label Content="Player" HorizontalAlignment="Right" Margin="0,4,80,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <TextBox x:Name="playerText2" IsReadOnly="True" HorizontalAlignment="Right" Margin="0,8,14,0" TextWrapping="Wrap" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" Height="23" VerticalAlignment="Top" Background="#FFEAEAEA" >
+                        <TextBox.Effect>
+                            <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
+                        </TextBox.Effect>
+                    </TextBox>
+                    <Label Content="House" HorizontalAlignment="Right" Margin="0,43,79,0" VerticalAlignment="Top" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                    <TextBox x:Name="houseText2" IsReadOnly="True" Margin="0,46,14,0" TextWrapping="Wrap" HorizontalAlignment="Right" Width="59" Height="23" VerticalAlignment="Top" IsTabStop="False" IsUndoEnabled="False" AllowDrop="False" VerticalContentAlignment="Center" Background="#FFEAEAEA">
+                        <TextBox.Effect>
+                            <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
+                        </TextBox.Effect>
+                    </TextBox>
+                </Grid>
+            </GroupBox>
+        </Grid>
+        <Menu Background="#FFE4E4E4" Height="20" VerticalAlignment="Top">
+            <Menu.Effect>
+                <DropShadowEffect Color="#FF939393" Opacity="0.75" BlurRadius="2" ShadowDepth="2"/>
+            </Menu.Effect>
+            <MenuItem x:Name="game" Header="_Game" >
+                <MenuItem x:Name="startGame" Header="_Start" InputGestureText="Ctrl+S" Click="Start_Click"/>
+                <MenuItem x:Name="resetGame" Header="_Reset" InputGestureText="Ctrl+T" Click="Reset_Click" IsEnabled="False" />
+                <Separator />
+                <MenuItem x:Name="exitGame" Header="_Exit" InputGestureText="Ctrl+X" Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem x:Name="help" Header="_Help">
+                <MenuItem x:Name="about" Header="_About" InputGestureText="Ctrl+A" Click="About_Click"/>
+                <MenuItem x:Name="rules" Header="_Rules" InputGestureText="Ctrl+L" Click="Rules_Click"/>
+            </MenuItem>
+        </Menu>
+    </Grid>
 </Window>

@@ -25,6 +25,7 @@ namespace CrapsWPF
         public MainWindow()
         {
             InitializeComponent();
+            CenterWindowOnScreen();
         }
 
 #region CommandBindings
@@ -61,22 +62,22 @@ namespace CrapsWPF
 
         void About_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = about.IsEnabled;
+            e.CanExecute = true;
         }
 
         void About_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            //About_Click(sender, e);
+            About_Click(sender, e);
         }
 
         void Rules_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = rules.IsEnabled;
+            e.CanExecute = true;
         }
 
         void Rules_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            //Rules_Click(sender, e);
+            Rules_Click(sender, e);
         }
 
         void Roll_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -105,14 +106,17 @@ namespace CrapsWPF
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
-            btn_RollDice.IsEnabled = true;
             btn_PlayAgain.IsEnabled = false;
             startGame.IsEnabled = false;
             resetGame.IsEnabled = true;
             gameWinner.Content = "";
             playerText1.Text = "";
             houseText1.Text = "";
-            theGame = new Game();
+            theGame = new Game(10000);
+            playerText2.Text = theGame.GetBank(1);
+            houseText2.Text = theGame.GetBank(0);
+            playerBet.IsEnabled = true;
+
         }
 
         private void Reset_Click(object sender, RoutedEventArgs e)
@@ -123,16 +127,37 @@ namespace CrapsWPF
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            Environment.Exit(0);
+            if (MessageBox.Show(Application.Current.MainWindow, "Exit Game", "Are you sure you want to exit the game?", MessageBoxButton.YesNo, MessageBoxImage.None) == MessageBoxResult.Yes)
+            {
+                Environment.Exit(0);
+            }
+            
+        }
+
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(Application.Current.MainWindow, "About CrapsWPF", "About this Game");
+        }
+
+        private void Rules_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(Application.Current.MainWindow, "Rules", "Rules for this Game");
+        }
+
+        private void playerBet_MouseLeave(object sender, MouseEventArgs e)
+        {
+            theGame.Bet = Convert.ToInt32(playerBet.Text);
+            btn_RollDice.IsEnabled = true;
+            playerBet.IsEnabled = false;
         }
 
         private void Roll_Click(object sender, RoutedEventArgs e)
         {
             btn_RollDice.IsEnabled = false;
             theGame.RollDice();
-            die1Text.Text = "" + theGame.GetDiceValue(1);
-            die2Text.Text = "" + theGame.GetDiceValue(2);
-            dieTotal.Text = "" + theGame.DiceTotal;
+            die1Text.Text = theGame.GetDiceValue(1);
+            die2Text.Text = theGame.GetDiceValue(2);
+            dieTotal.Text = theGame.DiceTotal.ToString();
             this.CheckRoll();
         }
 
@@ -141,8 +166,9 @@ namespace CrapsWPF
             ClearTextBoxes();
             theGame.ResetRollPoint();
             btn_PlayAgain.IsEnabled = false;
-            btn_RollDice.IsEnabled = true;
             gameWinner.Content = "";
+            playerBet.Text = "10";
+            playerBet.IsEnabled = true;
         }
 
         #endregion
@@ -162,13 +188,15 @@ namespace CrapsWPF
             if (theGame.CheckRoll())
             {
                 btn_RollDice.IsEnabled = true;
-                pointText.Text = "" + theGame.RollPoint();
+                pointText.Text = theGame.RollPoint().ToString();
             }
             else
             {
                 DisplayWin();
                 playerText1.Text = theGame.GetPoints(0);
                 houseText1.Text = theGame.GetPoints(1);
+                playerText2.Text = theGame.GetBank(1);
+                houseText2.Text = theGame.GetBank(0);
                 btn_PlayAgain.IsEnabled = true;
 
             }
@@ -185,7 +213,19 @@ namespace CrapsWPF
                 gameWinner.Content = "Loser!";
             }
         }
-#endregion
+
+        private void CenterWindowOnScreen()
+        {
+            double screenWidth = SystemParameters.PrimaryScreenWidth;
+            double screenHeight = SystemParameters.PrimaryScreenHeight;
+            double windowWidth = this.Width;
+            double windowHeight = this.Height;
+            this.Left = (screenWidth / 2) - (windowWidth / 2);
+            this.Top = (screenHeight / 2) - (windowHeight / 2);
+        }
+
+        #endregion
+
 
     }
 

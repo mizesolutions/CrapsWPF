@@ -39,7 +39,7 @@ namespace CrapsWPF
             {
                 MessageBox.Show(Application.Current.MainWindow, "Player Bank", e + "\nStarting Player Bank at $10000.\n('cause I'm a nice guy)");
             }
-            house = new Player();
+            house = new Player(bank*10);
             roll = new Roll();
             Bet = 0;
             DiceTotal = 0;
@@ -76,19 +76,22 @@ namespace CrapsWPF
             return player.Win;
         }
 
-        public int CheckBank()
+        public String GetBank(int type)
         {
-            return player.Bank;
+            if (type == 1)
+                return player.Bank.ToString();
+            else
+                return house.Bank.ToString();
         }
 
-        public int GetDiceValue(int type)
+        public String GetDiceValue(int type)
         {
             if (type == 1)
             {
-                return dice1.Value;
+                return dice1.Value.ToString();
             }
             else
-                return dice2.Value;
+                return dice2.Value.ToString();
         }
 
         public void SetPoints(int type)
