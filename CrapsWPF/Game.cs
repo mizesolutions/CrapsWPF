@@ -118,6 +118,12 @@ namespace CrapsWPF
             }
         }
 
+        public void InitBank(int value)
+        {
+            player.Bank = value;
+            house.Bank = value * 5;
+        }
+
         public void SetWin(bool value)
         {
             player.Win = value;

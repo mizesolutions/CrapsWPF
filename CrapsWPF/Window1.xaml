@@ -10,12 +10,12 @@
     <Grid>
         <TextBox x:Name="bankText1" HorizontalAlignment="Left" Height="23" Margin="65,0,0,33" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="70" VerticalContentAlignment="Center" Text="0" MouseLeave="bankText1_MouseLeave">
             <TextBox.Effect>
-                <DropShadowEffect BlurRadius="2" Opacity="0.75" ShadowDepth="2"/>
+                <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
             </TextBox.Effect>
         </TextBox>
         <Button x:Name="btn_SubmitBank" Content="Submit" HorizontalAlignment="Left" Margin="150,0,0,33" VerticalAlignment="Bottom" Width="75" Height="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btn_SubmitBank_Click">
             <Button.Effect>
-                <DropShadowEffect BlurRadius="2" Opacity="0.75" ShadowDepth="2"/>
+                <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
             </Button.Effect>
         </Button>
         <TextBlock Margin="10,30,10,0" TextWrapping="Wrap" Text="How much money would you like to start with?" VerticalAlignment="Top" Height="20"/>

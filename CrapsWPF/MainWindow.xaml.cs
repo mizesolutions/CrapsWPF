@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Reflection;
 
 namespace CrapsWPF
 {
@@ -125,13 +126,13 @@ namespace CrapsWPF
             gameWinner.Content = "";
             playerText1.Text = "";
             houseText1.Text = "";
-            btn_SubmitWager.IsEnabled = false;
             playerText2.Text = theGame.GetBank(1);
             houseText2.Text = theGame.GetBank(0);
             if (Convert.ToInt32(theGame.GetBank(1)) > 0)
             {
                 playerBet.IsEnabled = true;
-                btn_SubmitWager.IsEnabled = true;
+                playerBet.Focus();
+                btn_SubmitWager.IsEnabled = false;
             }
             else
                 btn_RollDice.IsEnabled = true;
@@ -155,12 +156,24 @@ namespace CrapsWPF
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(Application.Current.MainWindow, "About this Game", "About CrapsWPF");
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            Version version = assembly.GetName().Version;
+
+            MessageBox.Show(Application.Current.MainWindow, "Created by Brian Mize \n" +
+                                                            "Version: " + version + "\n", "About CrapsWPF");
         }
 
         private void Rules_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(Application.Current.MainWindow, "Rules for this Game", "Rules");
+            MessageBox.Show(Application.Current.MainWindow, "A player rolls two dice where each die has six faces in the usual way (values 1 through 6). " +
+                                                            "After the dice have come to rest the sum of the two upward faces is calculated.\n\n" +
+                                                            "- The first roll:\n" +
+                                                            "      If the sum is 7 or 11 on the first throw the player wins.\n" +
+                                                            "      If the sum is 2, 3 or 12 the player loses, that is the house wins.\n" +
+                                                            "      If the sum is 4, 5, 6, 8, 9, or 10, that sum becomes the player's \"point\".\n\n" +
+                                                            "- Continue given the player's point:\n" +
+                                                            "      Now the player must roll the \"point\" total before rolling a 7 in order to win.\n" +
+                                                            "      If a 7 is rolled before rolling the point, the player loses.", "Rules of the Game");
         }
 
         private void playerBet_MouseLeave(object sender, MouseEventArgs e)
@@ -169,19 +182,24 @@ namespace CrapsWPF
             {
                 int temp = Convert.ToInt32(playerBet.Text);
 
-                if(theGame.GetBank(1) == playerBet.Text)
+                if (Convert.ToInt32(theGame.GetBank(1)) >= Convert.ToInt32(playerBet.Text))
+                {
                     btn_SubmitWager.IsEnabled = true;
+                    btn_SubmitWager.Focus();
+                }
                 else
                 {
                     MessageBox.Show(Application.Current.MainWindow, "Player cannot wager more than what they have in their bank.\nPlease enter a new wager.", "Wager Error");
-                    playerBet.Text = "10";
+                    playerBet.Text = theGame.GetBank(1);
+                    playerBet.Focus();
                 }
                     
             }
             catch (Exception)
             {
                 MessageBox.Show(Application.Current.MainWindow, "Player wager must be whole numbers only.\n\nExample: 1000", "Wager Error");
-                playerBet.Text = "0";
+                playerBet.Text = "10";
+                playerBet.Focus();
             }
         }
 
@@ -189,6 +207,7 @@ namespace CrapsWPF
         {
             theGame.Bet = Convert.ToInt32(playerBet.Text);
             btn_RollDice.IsEnabled = true;
+            btn_RollDice.Focus();
             btn_SubmitWager.IsEnabled = false;
             playerBet.IsEnabled = false;
             
@@ -217,7 +236,11 @@ namespace CrapsWPF
                 btn_SubmitWager.IsEnabled = true;
             }
             else
+            {
                 btn_RollDice.IsEnabled = true;
+                theGame.Bet = 0;
+            }
+                
         }
 
         #endregion
@@ -233,7 +256,7 @@ namespace CrapsWPF
 
         public void PlayerBank(int bank)
         {
-            theGame.SetBank(0, bank);
+            theGame.InitBank(bank);
         }
 
         private void ClearTextBoxes()
