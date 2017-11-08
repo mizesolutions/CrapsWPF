@@ -1,0 +1,25 @@
+﻿<Window x:Class="CrapsWPF.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrapsWPF"
+        mc:Ignorable="d"
+        Icon="reddice.ico"
+        Title="Player Bank" Height="187" Width="289">
+    <Grid>
+        <TextBox x:Name="bankText1" HorizontalAlignment="Left" Height="23" Margin="65,0,0,33" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="70" VerticalContentAlignment="Center" Text="0" MouseLeave="bankText1_MouseLeave">
+            <TextBox.Effect>
+                <DropShadowEffect BlurRadius="2" Opacity="0.75" ShadowDepth="2"/>
+            </TextBox.Effect>
+        </TextBox>
+        <Button x:Name="btn_SubmitBank" Content="Submit" HorizontalAlignment="Left" Margin="150,0,0,33" VerticalAlignment="Bottom" Width="75" Height="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btn_SubmitBank_Click">
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="2" Opacity="0.75" ShadowDepth="2"/>
+            </Button.Effect>
+        </Button>
+        <TextBlock Margin="10,30,10,0" TextWrapping="Wrap" Text="How much money would you like to start with?" VerticalAlignment="Top" Height="20"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,55,0,0" TextWrapping="Wrap" Text="Example: 10   (just whole numbers)" VerticalAlignment="Top" Width="261" Height="26"/>
+
+    </Grid>
+</Window>

@@ -15,6 +15,7 @@
         <KeyBinding Command="local:Commands.Rules" Modifiers="Control" Key="L"/>
         <KeyBinding Command="local:Commands.Roll" Modifiers="Control" Key="R"/>
         <KeyBinding Command="local:Commands.PlayAgain" Modifiers="Control" Key="P"/>
+        <KeyBinding Command="local:Commands.SubmitWager" Modifiers="Control" Key="B"/>
     </Window.InputBindings>
     <Window.CommandBindings>
         <CommandBinding Command="local:Commands.Start" CanExecute="Start_CanExecute" Executed="Start_Executed" />
@@ -24,6 +25,7 @@
         <CommandBinding Command="local:Commands.Rules" CanExecute="Rules_CanExecute" Executed="Rules_Executed" />
         <CommandBinding Command="local:Commands.Roll" CanExecute="Roll_CanExecute" Executed="Roll_Executed" />
         <CommandBinding Command="local:Commands.PlayAgain" CanExecute="PlayAgain_CanExecute" Executed="PlayAgain_Executed" />
+        <CommandBinding Command="local:Commands.SubmitWager" CanExecute="SubmitWager_CanExecute" Executed="SubmitWager_Executed" />
     </Window.CommandBindings>
     <Grid Background="#FFAEAEAE">
         <Border Background="#FFAEAEAE" BorderBrush="#FF6E6E6E" BorderThickness="2" Margin="5,20,5,5" />
@@ -53,14 +55,15 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <GroupBox x:Name="grp_Bets" Header="Bets" HorizontalAlignment="Right" Height="101" Margin="0,0,193,16" VerticalAlignment="Bottom" Width="135" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White" >
+            <GroupBox x:Name="grp_Bets" Header="Bets" HorizontalAlignment="Right" Height="101" Margin="0,0,193,16" VerticalAlignment="Bottom" Width="153" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White" >
                 <Grid Margin="2">
-                    <TextBox x:Name="playerBet" HorizontalAlignment="Right" Margin="0,0,12,12" Width="60" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" Height="23" VerticalAlignment="Bottom" Background="White" Text="10" ToolTip="Default Wager Is 10" IsEnabled="False" MouseLeave="playerBet_MouseLeave" >
+                    <TextBox x:Name="playerBet" HorizontalAlignment="Right" Margin="0,0,66,15" Width="60" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" Height="23" VerticalAlignment="Bottom" Background="White" Text="10" ToolTip="Default Wager Is 10" IsEnabled="False" MouseLeave="playerBet_MouseLeave" >
                         <TextBox.Effect>
                             <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
                         </TextBox.Effect>
                     </TextBox>
-                    <Label x:Name="betLabel" Content="Enter Your Wager:" HorizontalAlignment="Right" Margin="0,6,4,0" VerticalAlignment="Top" Width="113"/>
+                    <Label x:Name="betLabel" Content="Submit Your Wager:" HorizontalAlignment="Right" Margin="0,6,4,0" VerticalAlignment="Top" Width="128"/>
+                    <Button x:Name="btn_SubmitWager" Content="Submit" HorizontalAlignment="Right" Margin="0,0,7,14" VerticalAlignment="Bottom" Width="53" Height="24" Click="Submit_Click" IsEnabled="False"/>
 
                 </Grid>
             </GroupBox>

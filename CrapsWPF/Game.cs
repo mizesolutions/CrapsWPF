@@ -145,5 +145,9 @@ namespace CrapsWPF
             roll.PointActive = false;
         }
 
+        public bool CheckBet()
+        {
+            return player.Bank - this.Bet >= 0;
+        }
     }
 }

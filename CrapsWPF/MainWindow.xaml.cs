@@ -21,11 +21,13 @@ namespace CrapsWPF
     public partial class MainWindow : Window
     {
         private Game theGame;
+        private Window1 subForm;
 
         public MainWindow()
         {
             InitializeComponent();
-            CenterWindowOnScreen();
+            CenterMainWindowOnScreen();
+            theGame = new Game();
         }
 
 #region CommandBindings
@@ -100,34 +102,51 @@ namespace CrapsWPF
             PlayAgain_Click(sender, e);
         }
 
-#endregion
+        void SubmitWager_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = btn_PlayAgain.IsEnabled;
+        }
 
-#region ClickMethods
+        void SubmitWager_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Submit_Click(sender, e);
+        }
+
+        #endregion
+
+        #region ClickMethods
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
+            SetPlayerBank();
             btn_PlayAgain.IsEnabled = false;
             startGame.IsEnabled = false;
             resetGame.IsEnabled = true;
             gameWinner.Content = "";
             playerText1.Text = "";
             houseText1.Text = "";
-            theGame = new Game(10000);
+            btn_SubmitWager.IsEnabled = false;
             playerText2.Text = theGame.GetBank(1);
             houseText2.Text = theGame.GetBank(0);
-            playerBet.IsEnabled = true;
-
+            if (Convert.ToInt32(theGame.GetBank(1)) > 0)
+            {
+                playerBet.IsEnabled = true;
+                btn_SubmitWager.IsEnabled = true;
+            }
+            else
+                btn_RollDice.IsEnabled = true;
         }
 
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
             ClearTextBoxes();
+            theGame = new Game();
             Start_Click(sender, e);
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show(Application.Current.MainWindow, "Exit Game", "Are you sure you want to exit the game?", MessageBoxButton.YesNo, MessageBoxImage.None) == MessageBoxResult.Yes)
+            if (MessageBox.Show(Application.Current.MainWindow, "Are you sure you want to exit the game?", "Exit Game", MessageBoxButton.YesNo, MessageBoxImage.None) == MessageBoxResult.Yes)
             {
                 Environment.Exit(0);
             }
@@ -136,19 +155,43 @@ namespace CrapsWPF
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(Application.Current.MainWindow, "About CrapsWPF", "About this Game");
+            MessageBox.Show(Application.Current.MainWindow, "About this Game", "About CrapsWPF");
         }
 
         private void Rules_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(Application.Current.MainWindow, "Rules", "Rules for this Game");
+            MessageBox.Show(Application.Current.MainWindow, "Rules for this Game", "Rules");
         }
 
         private void playerBet_MouseLeave(object sender, MouseEventArgs e)
         {
+            try
+            {
+                int temp = Convert.ToInt32(playerBet.Text);
+
+                if(theGame.GetBank(1) == playerBet.Text)
+                    btn_SubmitWager.IsEnabled = true;
+                else
+                {
+                    MessageBox.Show(Application.Current.MainWindow, "Player cannot wager more than what they have in their bank.\nPlease enter a new wager.", "Wager Error");
+                    playerBet.Text = "10";
+                }
+                    
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Application.Current.MainWindow, "Player wager must be whole numbers only.\n\nExample: 1000", "Wager Error");
+                playerBet.Text = "0";
+            }
+        }
+
+        private void Submit_Click(object sender, RoutedEventArgs e)
+        {
             theGame.Bet = Convert.ToInt32(playerBet.Text);
             btn_RollDice.IsEnabled = true;
+            btn_SubmitWager.IsEnabled = false;
             playerBet.IsEnabled = false;
+            
         }
 
         private void Roll_Click(object sender, RoutedEventArgs e)
@@ -167,13 +210,31 @@ namespace CrapsWPF
             theGame.ResetRollPoint();
             btn_PlayAgain.IsEnabled = false;
             gameWinner.Content = "";
-            playerBet.Text = "10";
-            playerBet.IsEnabled = true;
+            if (Convert.ToInt32(theGame.GetBank(1)) > 0)
+            {
+                playerBet.Text = "10";
+                playerBet.IsEnabled = true;
+                btn_SubmitWager.IsEnabled = true;
+            }
+            else
+                btn_RollDice.IsEnabled = true;
         }
 
         #endregion
 
 #region HelperMethods
+
+        private void SetPlayerBank()
+        {
+
+            subForm = new Window1();
+            subForm.ShowDialog();
+        }
+
+        public void PlayerBank(int bank)
+        {
+            theGame.SetBank(0, bank);
+        }
 
         private void ClearTextBoxes()
         {
@@ -181,6 +242,7 @@ namespace CrapsWPF
             die2Text.Text = "";
             dieTotal.Text = "";
             pointText.Text = "";
+            playerBet.Text = "10";
         }
 
         private void CheckRoll()
@@ -214,7 +276,7 @@ namespace CrapsWPF
             }
         }
 
-        private void CenterWindowOnScreen()
+        private void CenterMainWindowOnScreen()
         {
             double screenWidth = SystemParameters.PrimaryScreenWidth;
             double screenHeight = SystemParameters.PrimaryScreenHeight;
@@ -223,6 +285,7 @@ namespace CrapsWPF
             this.Left = (screenWidth / 2) - (windowWidth / 2);
             this.Top = (screenHeight / 2) - (windowHeight / 2);
         }
+
 
         #endregion
 

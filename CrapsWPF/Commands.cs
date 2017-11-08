@@ -16,6 +16,7 @@ namespace CrapsWPF
         public static readonly RoutedCommand Rules = new RoutedCommand();
         public static readonly RoutedCommand Roll = new RoutedCommand();
         public static readonly RoutedCommand PlayAgain = new RoutedCommand();
+        public static readonly RoutedCommand SubmitWager = new RoutedCommand();
     }
 
 }
