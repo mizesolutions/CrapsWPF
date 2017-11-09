@@ -20,6 +20,7 @@ namespace CrapsWPF
             CenterMainWindowOnScreen();
             theGame = new Game();
             entryAssemblyInfo = new AssemblyInfo(Assembly.GetEntryAssembly());
+            startGame.Focus();
         }
 
 #region CommandBindings
@@ -74,6 +75,16 @@ namespace CrapsWPF
             Rules_Click(sender, e);
         }
 
+        void Shortcuts_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        void Shortcuts_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Shortcuts_Click(sender, e);
+        }
+
         void Roll_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = btn_RollDice.IsEnabled;
@@ -121,12 +132,17 @@ namespace CrapsWPF
             houseText2.Text = theGame.GetBank(0);
             if (Convert.ToInt32(theGame.GetBank(1)) > 0)
             {
+                theGame.WagerOn = true;
                 playerBet.IsEnabled = true;
                 playerBet.Focus();
                 btn_SubmitWager.IsEnabled = false;
             }
             else
+            {
                 btn_RollDice.IsEnabled = true;
+                theGame.WagerOn = false;
+            }
+                
         }
 
         private void Reset_Click(object sender, RoutedEventArgs e)
@@ -138,33 +154,23 @@ namespace CrapsWPF
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show(Application.Current.MainWindow, "Are you sure you want to exit the game?", "Exit Game", MessageBoxButton.YesNo, MessageBoxImage.None) == MessageBoxResult.Yes)
-            {
-                Environment.Exit(0);
-            }
+            Message.Exit_Message();
             
         }
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(Application.Current.MainWindow, entryAssemblyInfo.Company + "\n" +
-                                                            entryAssemblyInfo.Product + "\n" +
-                                                            entryAssemblyInfo.Copyright + "\n" +
-                                                            entryAssemblyInfo.Description + "\n" +
-                                                            "Version: " + entryAssemblyInfo.Version + "\n", "About CrapsWPF");
+            Message.About_Message(entryAssemblyInfo);
         }
 
         private void Rules_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(Application.Current.MainWindow, "A player rolls two dice where each die has six faces in the usual way (values 1 through 6). " +
-                                                            "After the dice have come to rest the sum of the two upward faces is calculated.\n\n" +
-                                                            "- The first roll:\n" +
-                                                            "      If the sum is 7 or 11 on the first throw the player wins.\n" +
-                                                            "      If the sum is 2, 3 or 12 the player loses, that is the house wins.\n" +
-                                                            "      If the sum is 4, 5, 6, 8, 9, or 10, that sum becomes the player's \"point\".\n\n" +
-                                                            "- Continue given the player's point:\n" +
-                                                            "      Now the player must roll the \"point\" total before rolling a 7 in order to win.\n" +
-                                                            "      If a 7 is rolled before rolling the point, the player loses.", "Rules of the Game");
+            Message.Rules_Message();
+        }
+
+        private void Shortcuts_Click(object sender, RoutedEventArgs e)
+        {
+            Message.Shortcuts_Message();
         }
 
         private void playerBet_MouseLeave(object sender, MouseEventArgs e)
@@ -216,31 +222,47 @@ namespace CrapsWPF
 
         private void PlayAgain_Click(object sender, RoutedEventArgs e)
         {
+            if (Convert.ToInt32(theGame.GetBank(0)) <= 0)
+            {
+                theGame.SetHouseBank();
+            }
             ClearTextBoxes();
             theGame.ResetRollPoint();
             btn_PlayAgain.IsEnabled = false;
             gameWinner.Content = "";
-            if (Convert.ToInt32(theGame.GetBank(1)) <= 0)
+            if (Convert.ToInt32(theGame.GetBank(1)) <= 0 && theGame.WagerOn)
             {
-                if (MessageBox.Show(Application.Current.MainWindow, "You have run out of money. You can keep playing with out money, but you won't be able to wager.\n Would you like to add money to your banK?", "Out Of Money", MessageBoxButton.YesNo, MessageBoxImage.None) == MessageBoxResult.Yes)
+                if (MessageBox.Show(Application.Current.MainWindow, "You have run out of money.\nYou can keep playing with out money, but you won't be able to wager.\n\nWould you like to add money to your bank?", "Out Of Money", MessageBoxButton.YesNo, MessageBoxImage.None) == MessageBoxResult.Yes)
                 {
                     SetPlayerBank();
+                    playerText2.Text = theGame.GetBank(1);
+                    houseText2.Text = theGame.GetBank(0);
                     playerBet.Text = "10";
                     playerBet.IsEnabled = true;
                     btn_SubmitWager.IsEnabled = true;
                 }
                 else
                 {
-                    playerBet.IsEnabled = true;
-                    btn_SubmitWager.IsEnabled = true;
+                    theGame.WagerOn = false;
+                    playerBet.IsEnabled = false;
+                    btn_SubmitWager.IsEnabled = false;
                     theGame.Bet = 0;
+                    btn_RollDice.IsEnabled = true;
                 }
             }
-            else
+            else if(theGame.WagerOn)
             {
                 playerBet.Text = "10";
                 playerBet.IsEnabled = true;
                 btn_SubmitWager.IsEnabled = true;
+            }
+            else
+            {
+                playerBet.Text = "10";
+                playerBet.IsEnabled = false;
+                playerBet.IsEnabled = false;
+                btn_SubmitWager.IsEnabled = false;
+                btn_RollDice.IsEnabled = true;
             }
                 
         }

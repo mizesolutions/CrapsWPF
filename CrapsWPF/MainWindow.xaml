@@ -13,6 +13,7 @@
         <KeyBinding Command="local:Commands.Exit" Modifiers="Control" Key="X"/>
         <KeyBinding Command="local:Commands.About" Modifiers="Control" Key="A"/>
         <KeyBinding Command="local:Commands.Rules" Modifiers="Control" Key="L"/>
+        <KeyBinding Command="local:Commands.Shortcuts" Modifiers="Control" Key="K"/>
         <KeyBinding Command="local:Commands.Roll" Modifiers="Control" Key="R"/>
         <KeyBinding Command="local:Commands.PlayAgain" Modifiers="Control" Key="P"/>
         <KeyBinding Command="local:Commands.SubmitWager" Modifiers="Control" Key="B"/>
@@ -23,6 +24,7 @@
         <CommandBinding Command="local:Commands.Exit" CanExecute="Exit_CanExecute" Executed="Exit_Executed" />
         <CommandBinding Command="local:Commands.About" CanExecute="About_CanExecute" Executed="About_Executed" />
         <CommandBinding Command="local:Commands.Rules" CanExecute="Rules_CanExecute" Executed="Rules_Executed" />
+        <CommandBinding Command="local:Commands.Shortcuts" CanExecute="Shortcuts_CanExecute" Executed="Shortcuts_Executed" />
         <CommandBinding Command="local:Commands.Roll" CanExecute="Roll_CanExecute" Executed="Roll_Executed" />
         <CommandBinding Command="local:Commands.PlayAgain" CanExecute="PlayAgain_CanExecute" Executed="PlayAgain_Executed" />
         <CommandBinding Command="local:Commands.SubmitWager" CanExecute="SubmitWager_CanExecute" Executed="SubmitWager_Executed" />
@@ -58,7 +60,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <GroupBox x:Name="grp_Bets" Header="Bets" HorizontalAlignment="Right" Height="101" Margin="0,10,186,0" VerticalAlignment="Top" Width="153" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White" >
+            <GroupBox x:Name="grp_Bets" Header="Bets" HorizontalAlignment="Right" Height="101" Margin="0,10,188,0" VerticalAlignment="Top" Width="153" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White" >
                 <Grid Margin="2">
                     <TextBox x:Name="playerBet" HorizontalAlignment="Right" Margin="0,0,66,15" Width="60" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" Height="23" VerticalAlignment="Bottom" Background="White" Text="10" ToolTip="Default Wager Is 10" IsEnabled="False" MouseLeave="playerBet_MouseLeave" >
                         <TextBox.Effect>
@@ -74,7 +76,7 @@
 
                 </Grid>
             </GroupBox>
-            <GroupBox x:Name="grp_CurrentRoll" Header="Current Roll" HorizontalAlignment="Right" Height="145" Margin="0,0,20,121" VerticalAlignment="Bottom" Width="161" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White">
+            <GroupBox x:Name="grp_CurrentRoll" Header="Current Roll" HorizontalAlignment="Right" Height="145" Margin="0,0,20,122" VerticalAlignment="Bottom" Width="161" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White">
                 <Grid Margin="2">
                     <Label Content="Die 1" HorizontalAlignment="Right" Margin="0,13,80,0" VerticalAlignment="Top" FontWeight="Bold" VerticalContentAlignment="Center" FontSize="12"/>
                     <TextBox x:Name="die1Text" IsReadOnly="True" HorizontalAlignment="Right" Height="23" Margin="0,14,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" VerticalContentAlignment="Center" Background="#FFEAEAEA" >
@@ -145,14 +147,16 @@
                 <DropShadowEffect Color="#FF939393" Opacity="0.75" BlurRadius="2" ShadowDepth="2"/>
             </Menu.Effect>
             <MenuItem x:Name="game" Header="_Game" >
-                <MenuItem x:Name="startGame" Header="_Start" InputGestureText="Ctrl+S" Click="Start_Click"/>
+                <MenuItem x:Name="startGame" Header="_Start" InputGestureText="Ctrl+S" Click="Start_Click" />
                 <MenuItem x:Name="resetGame" Header="_Reset" InputGestureText="Ctrl+T" Click="Reset_Click" IsEnabled="False" />
                 <Separator />
                 <MenuItem x:Name="exitGame" Header="_Exit" InputGestureText="Ctrl+X" Click="Exit_Click"/>
             </MenuItem>
             <MenuItem x:Name="help" Header="_Help">
                 <MenuItem x:Name="about" Header="_About" InputGestureText="Ctrl+A" Click="About_Click"/>
+                <Separator />
                 <MenuItem x:Name="rules" Header="_Rules" InputGestureText="Ctrl+L" Click="Rules_Click"/>
+                <MenuItem x:Name="shortcuts" Header="_Shortcuts" InputGestureText="Ctrl+K" Click="Shortcuts_Click"/>
             </MenuItem>
         </Menu>
     </Grid>

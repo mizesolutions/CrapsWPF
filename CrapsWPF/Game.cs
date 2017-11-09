@@ -13,7 +13,7 @@ namespace CrapsWPF
         private Player player, house;
         private Roll roll;
         private int bet, diceTotal;
-        private bool gameOver;
+        private bool wagerOn;
 
         public Game()
         {
@@ -24,31 +24,12 @@ namespace CrapsWPF
             roll = new Roll();
             Bet = 0;
             DiceTotal = 0;
-            GameOver = false;
-        }
-
-        public Game(int bank)
-        {
-            dice1 = new Dice((int)DateTime.Now.Ticks -3301);
-            dice2 = new Dice((int)DateTime.Now.Ticks + 42);
-            try
-            {
-                player = new Player(bank);
-            }
-            catch (ArgumentException e)
-            {
-                MessageBox.Show(Application.Current.MainWindow, "Player Bank", e + "\nStarting Player Bank at $10000.\n('cause I'm a nice guy)");
-            }
-            house = new Player(bank*10);
-            roll = new Roll();
-            Bet = 0;
-            DiceTotal = 0;
-            GameOver = false;
+            WagerOn = false;
         }
 
         public int Bet { get => this.bet; set => this.bet = value; }
         public int DiceTotal { get => this.diceTotal; set => this.diceTotal = value; }
-        public bool GameOver { get => this.gameOver; set => this.gameOver = value; }
+        public bool WagerOn { get => this.wagerOn; set => this.wagerOn = value; }
 
         public void RollDice()
         {
@@ -59,16 +40,7 @@ namespace CrapsWPF
 
         public bool CheckRoll()
         {
-            if (roll.CheckRoll(this))
-            {
-                return true;
-            }
-            else
-            {
-                GameOver = true;
-                return false;
-            }
-                
+            return roll.CheckRoll(this);
         }
 
         public bool CheckWin()
@@ -87,9 +59,7 @@ namespace CrapsWPF
         public String GetDiceValue(int type)
         {
             if (type == 1)
-            {
                 return dice1.Value.ToString();
-            }
             else
                 return dice2.Value.ToString();
         }
@@ -97,9 +67,7 @@ namespace CrapsWPF
         public void SetPoints(int type)
         {
             if (type == 0)
-            {
                 player.Points += 1;
-            }
             else
                 house.Points += 1;
         }
@@ -122,6 +90,11 @@ namespace CrapsWPF
         {
             player.Bank = value;
             house.Bank += value * 5;
+        }
+
+        public void SetHouseBank()
+        {
+            house.Bank = player.Bank * 10;
         }
 
         public void SetWin(bool value)
