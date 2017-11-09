@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Reflection;
 
 namespace CrapsWPF
@@ -23,12 +12,14 @@ namespace CrapsWPF
     {
         private Game theGame;
         private Window1 subForm;
+        private AssemblyInfo entryAssemblyInfo;
 
         public MainWindow()
         {
             InitializeComponent();
             CenterMainWindowOnScreen();
             theGame = new Game();
+            entryAssemblyInfo = new AssemblyInfo(Assembly.GetEntryAssembly());
         }
 
 #region CommandBindings
@@ -115,7 +106,7 @@ namespace CrapsWPF
 
         #endregion
 
-        #region ClickMethods
+#region ClickMethods
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
@@ -156,11 +147,11 @@ namespace CrapsWPF
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            Version version = assembly.GetName().Version;
-
-            MessageBox.Show(Application.Current.MainWindow, "Created by Brian Mize \n" +
-                                                            "Version: " + version + "\n", "About CrapsWPF");
+            MessageBox.Show(Application.Current.MainWindow, entryAssemblyInfo.Company + "\n" +
+                                                            entryAssemblyInfo.Product + "\n" +
+                                                            entryAssemblyInfo.Copyright + "\n" +
+                                                            entryAssemblyInfo.Description + "\n" +
+                                                            "Version: " + entryAssemblyInfo.Version + "\n", "About CrapsWPF");
         }
 
         private void Rules_Click(object sender, RoutedEventArgs e)
@@ -243,7 +234,7 @@ namespace CrapsWPF
                 
         }
 
-        #endregion
+#endregion
 
 #region HelperMethods
 
