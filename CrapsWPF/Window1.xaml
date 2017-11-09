@@ -18,7 +18,7 @@
                 <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
             </Button.Effect>
         </Button>
-        <TextBlock Margin="10,30,10,0" TextWrapping="Wrap" Text="How much money would you like to start with?" VerticalAlignment="Top" Height="20"/>
+        <TextBlock Margin="10,30,10,0" TextWrapping="Wrap" Text="How much money would you like in your bank?" VerticalAlignment="Top" Height="20"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,55,0,0" TextWrapping="Wrap" Text="Example: 10   (just whole numbers)" VerticalAlignment="Top" Width="261" Height="26"/>
 
     </Grid>

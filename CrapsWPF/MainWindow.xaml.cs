@@ -220,16 +220,27 @@ namespace CrapsWPF
             theGame.ResetRollPoint();
             btn_PlayAgain.IsEnabled = false;
             gameWinner.Content = "";
-            if (Convert.ToInt32(theGame.GetBank(1)) > 0)
+            if (Convert.ToInt32(theGame.GetBank(1)) <= 0)
+            {
+                if (MessageBox.Show(Application.Current.MainWindow, "You have run out of money. You can keep playing with out money, but you won't be able to wager.\n Would you like to add money to your banK?", "Out Of Money", MessageBoxButton.YesNo, MessageBoxImage.None) == MessageBoxResult.Yes)
+                {
+                    SetPlayerBank();
+                    playerBet.Text = "10";
+                    playerBet.IsEnabled = true;
+                    btn_SubmitWager.IsEnabled = true;
+                }
+                else
+                {
+                    playerBet.IsEnabled = true;
+                    btn_SubmitWager.IsEnabled = true;
+                    theGame.Bet = 0;
+                }
+            }
+            else
             {
                 playerBet.Text = "10";
                 playerBet.IsEnabled = true;
                 btn_SubmitWager.IsEnabled = true;
-            }
-            else
-            {
-                btn_RollDice.IsEnabled = true;
-                theGame.Bet = 0;
             }
                 
         }
