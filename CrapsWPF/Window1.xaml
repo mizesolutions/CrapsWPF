@@ -6,20 +6,24 @@
         xmlns:local="clr-namespace:CrapsWPF"
         mc:Ignorable="d"
         Icon="reddice.ico"
-        Title="Player Bank" Height="187" Width="289">
-    <Grid>
-        <TextBox x:Name="bankText1" HorizontalAlignment="Left" Height="23" Margin="65,0,0,33" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="70" VerticalContentAlignment="Center" Text="0" MouseLeave="bankText1_MouseLeave">
-            <TextBox.Effect>
-                <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
-            </TextBox.Effect>
-        </TextBox>
-        <Button x:Name="btn_SubmitBank" Content="Submit" HorizontalAlignment="Left" Margin="150,0,0,33" VerticalAlignment="Bottom" Width="75" Height="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btn_SubmitBank_Click">
-            <Button.Effect>
-                <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
-            </Button.Effect>
-        </Button>
-        <TextBlock Margin="10,30,10,0" TextWrapping="Wrap" Text="How much money would you like in your bank?" VerticalAlignment="Top" Height="20"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,55,0,0" TextWrapping="Wrap" Text="Example: 10   (just whole numbers)" VerticalAlignment="Top" Width="261" Height="26"/>
+        Title="Player Bank" Height="192" Width="339" ResizeMode="NoResize">
+    <Grid Background="#FFAEAEAE">
+        <Grid Background="White" Margin="3,0,3,3">
+            <TextBox x:Name="bankText1" HorizontalAlignment="Left" Height="23" Margin="87,0,0,43" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="70" VerticalContentAlignment="Center" Text="0" MouseLeave="bankText1_MouseLeave">
+                <TextBox.Effect>
+                    <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
+                </TextBox.Effect>
+            </TextBox>
+            <Button x:Name="btn_SubmitBank" Content="Submit" HorizontalAlignment="Right" Margin="0,0,77,43" VerticalAlignment="Bottom" Width="75" Height="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btn_SubmitBank_Click" Cursor="Hand">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
+                </Button.Effect>
+            </Button>
+            <TextBlock Margin="37,52,30,0" TextWrapping="Wrap" Text="Example: 10   (just whole numbers)" VerticalAlignment="Top" Height="20"/>
+            <TextBlock Margin="37,27,15,0" TextWrapping="Wrap" Text="How much money would you like in your bank?" VerticalAlignment="Top" Height="20"/>
+            <TextBlock Margin="65,0,56,15" TextWrapping="Wrap" Text="Enter 0 to disable placing bets." VerticalAlignment="Bottom" Height="20" FontSize="11" HorizontalAlignment="Center"/>
 
+
+        </Grid>
     </Grid>
 </Window>

@@ -107,7 +107,7 @@ namespace CrapsWPF
 
         void SubmitWager_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = btn_PlayAgain.IsEnabled;
+            e.CanExecute = theGame.WagerOn;
         }
 
         void SubmitWager_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -135,10 +135,13 @@ namespace CrapsWPF
                 theGame.WagerOn = true;
                 playerBet.IsEnabled = true;
                 playerBet.Focus();
-                btn_SubmitWager.IsEnabled = false;
+                btn_SubmitWager.IsEnabled = true;
             }
             else
             {
+                playerBet.Text = "0";
+                playerBet.IsEnabled = false;
+                btn_SubmitWager.IsEnabled = false;
                 btn_RollDice.IsEnabled = true;
                 theGame.WagerOn = false;
             }
@@ -230,27 +233,7 @@ namespace CrapsWPF
             theGame.ResetRollPoint();
             btn_PlayAgain.IsEnabled = false;
             gameWinner.Content = "";
-            if (Convert.ToInt32(theGame.GetBank(1)) <= 0 && theGame.WagerOn)
-            {
-                if (MessageBox.Show(Application.Current.MainWindow, "You have run out of money.\nYou can keep playing with out money, but you won't be able to wager.\n\nWould you like to add money to your bank?", "Out Of Money", MessageBoxButton.YesNo, MessageBoxImage.None) == MessageBoxResult.Yes)
-                {
-                    SetPlayerBank();
-                    playerText2.Text = theGame.GetBank(1);
-                    houseText2.Text = theGame.GetBank(0);
-                    playerBet.Text = "10";
-                    playerBet.IsEnabled = true;
-                    btn_SubmitWager.IsEnabled = true;
-                }
-                else
-                {
-                    theGame.WagerOn = false;
-                    playerBet.IsEnabled = false;
-                    btn_SubmitWager.IsEnabled = false;
-                    theGame.Bet = 0;
-                    btn_RollDice.IsEnabled = true;
-                }
-            }
-            else if(theGame.WagerOn)
+            if(theGame.WagerOn)
             {
                 playerBet.Text = "10";
                 playerBet.IsEnabled = true;
@@ -258,10 +241,6 @@ namespace CrapsWPF
             }
             else
             {
-                playerBet.Text = "10";
-                playerBet.IsEnabled = false;
-                playerBet.IsEnabled = false;
-                btn_SubmitWager.IsEnabled = false;
                 btn_RollDice.IsEnabled = true;
             }
                 
@@ -273,7 +252,6 @@ namespace CrapsWPF
 
         private void SetPlayerBank()
         {
-
             subForm = new Window1();
             subForm.ShowDialog();
         }
@@ -290,6 +268,8 @@ namespace CrapsWPF
             dieTotal.Text = "";
             pointText.Text = "";
             playerBet.Text = "10";
+            gameOver1.Content = "";
+            gameOver2.Content = "";
         }
 
         private void CheckRoll()
@@ -306,7 +286,14 @@ namespace CrapsWPF
                 houseText1.Text = theGame.GetPoints(1);
                 playerText2.Text = theGame.GetBank(1);
                 houseText2.Text = theGame.GetBank(0);
-                btn_PlayAgain.IsEnabled = true;
+                if (Convert.ToInt32(theGame.GetBank(1)) <= 0 && theGame.WagerOn)
+                {
+                    gameWinner.Content = "";
+                    gameOver1.Content = "Out of money,";
+                    gameOver2.Content = "Game Over!";
+                }
+                else
+                    btn_PlayAgain.IsEnabled = true;
 
             }
         }

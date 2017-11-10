@@ -23,7 +23,7 @@ namespace CrapsWPF
         {
             InitializeComponent();
             CenterWindow1OnScreen();
-            btn_SubmitBank.IsEnabled = false;
+            btn_SubmitBank.IsEnabled = true;
         }
 
         private void CenterWindow1OnScreen()
@@ -48,7 +48,6 @@ namespace CrapsWPF
             try
             {
                 Convert.ToInt32(bankText1.Text);
-                btn_SubmitBank.IsEnabled = true;
                 btn_SubmitBank.Focus();
             }
             catch (Exception)

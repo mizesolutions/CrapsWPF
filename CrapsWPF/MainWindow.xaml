@@ -38,7 +38,7 @@
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="2" Color="#FF787878" Opacity="0.75" ShadowDepth="2"/>
             </Grid.Effect>
-            <Button x:Name="btn_RollDice" Content="_Roll Dice"  Click="Roll_Click" Margin="20,20,0,0" FontWeight="SemiBold" FontStretch="Expanded" HorizontalAlignment="Left" Width="109" Height="35" VerticalAlignment="Top" IsEnabled="False">
+            <Button x:Name="btn_RollDice" Content="_Roll Dice"  Click="Roll_Click" Margin="20,20,0,0" FontWeight="SemiBold" FontStretch="Expanded" HorizontalAlignment="Left" Width="109" Height="35" VerticalAlignment="Top" IsEnabled="False" Cursor="Hand">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
                 </Button.Effect>
@@ -49,7 +49,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button x:Name="btn_PlayAgain" Content="_Play Again" Click="PlayAgain_Click" Margin="20,0,0,20" FontWeight="SemiBold" FontStretch="Expanded" HorizontalAlignment="Left" Width="109" Height="35" VerticalAlignment="Bottom" IsEnabled="False" Grid.RowSpan="2">
+            <Button x:Name="btn_PlayAgain" Content="_Play Again" Click="PlayAgain_Click" Margin="20,0,0,20" FontWeight="SemiBold" FontStretch="Expanded" HorizontalAlignment="Left" Width="109" Height="35" VerticalAlignment="Bottom" IsEnabled="False" Grid.RowSpan="2" Cursor="Hand">
                 <Button.Effect>
                     <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
                 </Button.Effect>
@@ -68,7 +68,7 @@
                         </TextBox.Effect>
                     </TextBox>
                     <Label x:Name="betLabel" Content="Submit Your Wager:" HorizontalAlignment="Right" Margin="0,6,4,0" VerticalAlignment="Top" Width="128"/>
-                    <Button x:Name="btn_SubmitWager" Content="Submit" HorizontalAlignment="Right" Margin="0,0,7,14" VerticalAlignment="Bottom" Width="53" Height="24" Click="Submit_Click" IsEnabled="False">
+                    <Button x:Name="btn_SubmitWager" Content="Submit" HorizontalAlignment="Right" Margin="0,0,7,14" VerticalAlignment="Bottom" Width="53" Height="24" Click="Submit_Click" IsEnabled="False" Cursor="Hand">
                         <Button.Effect>
                             <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
                         </Button.Effect>
@@ -79,19 +79,19 @@
             <GroupBox x:Name="grp_CurrentRoll" Header="Current Roll" HorizontalAlignment="Right" Height="145" Margin="0,0,20,122" VerticalAlignment="Bottom" Width="161" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White">
                 <Grid Margin="2">
                     <Label Content="Die 1" HorizontalAlignment="Right" Margin="0,13,80,0" VerticalAlignment="Top" FontWeight="Bold" VerticalContentAlignment="Center" FontSize="12"/>
-                    <TextBox x:Name="die1Text" IsReadOnly="True" HorizontalAlignment="Right" Height="23" Margin="0,14,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" VerticalContentAlignment="Center" Background="#FFEAEAEA" >
+                    <TextBox x:Name="die1Text" IsReadOnly="True" HorizontalAlignment="Right" Height="23" Margin="0,14,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" VerticalContentAlignment="Center" Background="#FFEAEAEA" Cursor="None" Focusable="False" >
                         <TextBox.Effect>
                             <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
                         </TextBox.Effect>
                     </TextBox>
                     <Label Content="Die 2" HorizontalAlignment="Right" Margin="0,0,80,44" VerticalAlignment="Bottom" FontWeight="Bold" VerticalContentAlignment="Center" FontSize="12"/>
-                    <TextBox x:Name="die2Text" IsReadOnly="True" Margin="0,0,14,46" TextWrapping="Wrap" HorizontalAlignment="Right" Width="59" Height="23" VerticalAlignment="Bottom" IsTabStop="False" IsUndoEnabled="False" AllowDrop="False" VerticalContentAlignment="Center" Background="#FFEAEAEA">
+                    <TextBox x:Name="die2Text" IsReadOnly="True" Margin="0,0,14,46" TextWrapping="Wrap" HorizontalAlignment="Right" Width="59" Height="23" VerticalAlignment="Bottom" IsTabStop="False" IsUndoEnabled="False" AllowDrop="False" VerticalContentAlignment="Center" Background="#FFEAEAEA" Cursor="None" Focusable="False">
                         <TextBox.Effect>
                             <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
                         </TextBox.Effect>
                     </TextBox>
                     <Label Content="Total" Margin="0,0,81,8" FontWeight="Bold" HorizontalAlignment="Right" Width="38" Height="26" VerticalAlignment="Bottom" VerticalContentAlignment="Center" FontSize="12"/>
-                    <TextBox x:Name="dieTotal" IsReadOnly="True" Margin="0,0,14,10" TextWrapping="Wrap" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" VerticalContentAlignment="Center" Background="#FFEAEAEA">
+                    <TextBox x:Name="dieTotal" IsReadOnly="True" Margin="0,0,14,10" TextWrapping="Wrap" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" VerticalContentAlignment="Center" Background="#FFEAEAEA" Cursor="None" Focusable="False">
                         <TextBox.Effect>
                             <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
                         </TextBox.Effect>
@@ -101,20 +101,20 @@
             <GroupBox x:Name="grp_ScoreBoard" Header="Score Board" HorizontalAlignment="Right" Height="101" Margin="0,0,20,17" VerticalAlignment="Bottom" Width="161" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White">
                 <Grid Margin="2">
                     <Label Content="Player" HorizontalAlignment="Right" Margin="0,4,80,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                    <TextBox x:Name="playerText1" IsReadOnly="True" HorizontalAlignment="Right" Margin="0,8,14,0" TextWrapping="Wrap" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" Height="23" VerticalAlignment="Top" Background="#FFEAEAEA" >
+                    <TextBox x:Name="playerText1" IsReadOnly="True" HorizontalAlignment="Right" Margin="0,8,14,0" TextWrapping="Wrap" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" Height="23" VerticalAlignment="Top" Background="#FFEAEAEA" Cursor="None" Focusable="False" >
                         <TextBox.Effect>
                             <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
                         </TextBox.Effect>
                     </TextBox>
                     <Label Content="House" HorizontalAlignment="Right" Margin="0,43,79,0" VerticalAlignment="Top" FontWeight="Bold" VerticalContentAlignment="Center"/>
-                    <TextBox x:Name="houseText1" IsReadOnly="True" Margin="0,46,14,0" TextWrapping="Wrap" HorizontalAlignment="Right" Width="59" Height="23" VerticalAlignment="Top" IsTabStop="False" IsUndoEnabled="False" AllowDrop="False" VerticalContentAlignment="Center" Background="#FFEAEAEA">
+                    <TextBox x:Name="houseText1" IsReadOnly="True" Margin="0,46,14,0" TextWrapping="Wrap" HorizontalAlignment="Right" Width="59" Height="23" VerticalAlignment="Top" IsTabStop="False" IsUndoEnabled="False" AllowDrop="False" VerticalContentAlignment="Center" Background="#FFEAEAEA" Cursor="None" Focusable="False">
                         <TextBox.Effect>
                             <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
                         </TextBox.Effect>
                     </TextBox>
                 </Grid>
             </GroupBox>
-            <TextBox x:Name="pointText" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="68,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" VerticalContentAlignment="Center" FontWeight="Bold" IsUndoEnabled="False" IsTabStop="False" Background="#FFEAEAEA">
+            <TextBox x:Name="pointText" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="68,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" VerticalContentAlignment="Center" FontWeight="Bold" IsUndoEnabled="False" IsTabStop="False" Background="#FFEAEAEA" AllowDrop="False" Cursor="None" Focusable="False">
                 <TextBox.Effect>
                     <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
                 </TextBox.Effect>
@@ -128,19 +128,29 @@
             <GroupBox x:Name="grp_Bank" Header="Bank" HorizontalAlignment="Right" Margin="0,10,20,0" Height="101" Width="161" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White" VerticalAlignment="Top">
                 <Grid Margin="2">
                     <Label Content="Player" HorizontalAlignment="Right" Margin="0,4,80,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                    <TextBox x:Name="playerText2" IsReadOnly="True" HorizontalAlignment="Right" Margin="0,8,14,0" TextWrapping="Wrap" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" Height="23" VerticalAlignment="Top" Background="#FFEAEAEA" >
+                    <TextBox x:Name="playerText2" IsReadOnly="True" HorizontalAlignment="Right" Margin="0,8,14,0" TextWrapping="Wrap" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" Height="23" VerticalAlignment="Top" Background="#FFEAEAEA" Cursor="None" Focusable="False" >
                         <TextBox.Effect>
                             <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
                         </TextBox.Effect>
                     </TextBox>
                     <Label Content="House" HorizontalAlignment="Right" Margin="0,43,79,0" VerticalAlignment="Top" FontWeight="Bold" VerticalContentAlignment="Center"/>
-                    <TextBox x:Name="houseText2" IsReadOnly="True" Margin="0,46,14,0" TextWrapping="Wrap" HorizontalAlignment="Right" Width="59" Height="23" VerticalAlignment="Top" IsTabStop="False" IsUndoEnabled="False" AllowDrop="False" VerticalContentAlignment="Center" Background="#FFEAEAEA">
+                    <TextBox x:Name="houseText2" IsReadOnly="True" Margin="0,46,14,0" TextWrapping="Wrap" HorizontalAlignment="Right" Width="59" Height="23" VerticalAlignment="Top" IsTabStop="False" IsUndoEnabled="False" AllowDrop="False" VerticalContentAlignment="Center" Background="#FFEAEAEA" Cursor="None" Focusable="False">
                         <TextBox.Effect>
                             <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
                         </TextBox.Effect>
                     </TextBox>
                 </Grid>
             </GroupBox>
+            <Label x:Name="gameOver1" HorizontalAlignment="Left" Height="56" Margin="20,0,0,170" VerticalAlignment="Bottom" Width="286" FontSize="36" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontStretch="Expanded" Foreground="Red">
+                <Label.Effect>
+                    <DropShadowEffect BlurRadius="2" Color="#FF9C9C9C" Opacity="0.75" ShadowDepth="2"/>
+                </Label.Effect>
+            </Label>
+            <Label x:Name="gameOver2" HorizontalAlignment="Left" Height="56" Margin="20,0,0,113" VerticalAlignment="Bottom" Width="286" FontSize="36" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontStretch="Expanded" Foreground="Red">
+                <Label.Effect>
+                    <DropShadowEffect BlurRadius="2" Color="#FF9C9C9C" Opacity="0.75" ShadowDepth="2"/>
+                </Label.Effect>
+            </Label>
         </Grid>
         <Menu Background="#FFE4E4E4" Height="20" VerticalAlignment="Top">
             <Menu.Effect>
