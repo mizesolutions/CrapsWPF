@@ -37,12 +37,14 @@ namespace CrapsWPF
         {
             try
             {
-                Convert.ToInt32(bankText1.Text);
+                if (Convert.ToInt32(bankText1.Text) < 0)
+                    throw new Exception();
+                
                 btn_SubmitBank.Focus();
             }
             catch (Exception)
             {
-                MessageBox.Show(Application.Current.MainWindow, "Bank amount must be whole numbers only.\n\nExample: 1000", "Banking Error");
+                MessageBox.Show(Application.Current.MainWindow, "Bank amount must be non-negative whole numbers only.\n\nExample: 1000", "Banking Error");
                 this.Focus();
                 bankText1.Text = "10";
                 bankText1.Focus();

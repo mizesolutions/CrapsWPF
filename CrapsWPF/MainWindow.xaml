@@ -60,8 +60,8 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <GroupBox x:Name="grp_Bets" Header="Bets" HorizontalAlignment="Right" Height="101" Margin="0,10,188,0" VerticalAlignment="Top" Width="153" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White" >
-                <Grid Margin="2">
+            <GroupBox x:Name="grp_Bets" Background="White"  Header="Bets" HorizontalAlignment="Right" Height="101" Margin="0,10,188,0" VerticalAlignment="Top" Width="153" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" >
+                <Grid Margin="2" Background="White">
                     <TextBox x:Name="playerBet" HorizontalAlignment="Right" Margin="0,0,66,15" Width="60" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" Height="23" VerticalAlignment="Bottom" Background="White" Text="10" ToolTip="Default Wager Is 10" IsEnabled="False" MouseLeave="playerBet_MouseLeave" >
                         <TextBox.Effect>
                             <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
@@ -77,7 +77,7 @@
                 </Grid>
             </GroupBox>
             <GroupBox x:Name="grp_CurrentRoll" Header="Current Roll" HorizontalAlignment="Right" Height="145" Margin="0,0,20,122" VerticalAlignment="Bottom" Width="161" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White">
-                <Grid Margin="2">
+                <Grid Margin="2" Background="White">
                     <Label Content="Die 1" HorizontalAlignment="Right" Margin="0,13,80,0" VerticalAlignment="Top" FontWeight="Bold" VerticalContentAlignment="Center" FontSize="12"/>
                     <TextBox x:Name="die1Text" IsReadOnly="True" HorizontalAlignment="Right" Height="23" Margin="0,14,14,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" VerticalContentAlignment="Center" Background="#FFEAEAEA" Cursor="None" Focusable="False" >
                         <TextBox.Effect>
@@ -99,7 +99,7 @@
                 </Grid>
             </GroupBox>
             <GroupBox x:Name="grp_ScoreBoard" Header="Score Board" HorizontalAlignment="Right" Height="101" Margin="0,0,20,17" VerticalAlignment="Bottom" Width="161" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White">
-                <Grid Margin="2">
+                <Grid Margin="2" Background="White">
                     <Label Content="Player" HorizontalAlignment="Right" Margin="0,4,80,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     <TextBox x:Name="playerText1" IsReadOnly="True" HorizontalAlignment="Right" Margin="0,8,14,0" TextWrapping="Wrap" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" Height="23" VerticalAlignment="Top" Background="#FFEAEAEA" Cursor="None" Focusable="False" >
                         <TextBox.Effect>
@@ -125,8 +125,8 @@
                     <DropShadowEffect BlurRadius="2" Color="#FF9C9C9C" Opacity="0.75" ShadowDepth="2"/>
                 </Label.Effect>
             </Label>
-            <GroupBox x:Name="grp_Bank" Header="Bank" HorizontalAlignment="Right" Margin="0,10,20,0" Height="101" Width="161" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold" Background="White" VerticalAlignment="Top">
-                <Grid Margin="2">
+            <GroupBox x:Name="grp_Bank" Background="White" Header="Bank" HorizontalAlignment="Right" Margin="0,10,20,0" Height="101" Width="161" BorderThickness="2" BorderBrush="#FFCFCFCF" FontWeight="Bold"  VerticalAlignment="Top">
+                <Grid Margin="2" Background="White">
                     <Label Content="Player" HorizontalAlignment="Right" Margin="0,4,80,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     <TextBox x:Name="playerText2" IsReadOnly="True" HorizontalAlignment="Right" Margin="0,8,14,0" TextWrapping="Wrap" Width="59" AllowDrop="False" IsTabStop="False" IsUndoEnabled="False" Height="23" VerticalAlignment="Top" Background="#FFEAEAEA" Cursor="None" Focusable="False" >
                         <TextBox.Effect>
@@ -141,7 +141,7 @@
                     </TextBox>
                 </Grid>
             </GroupBox>
-            <Label x:Name="gameOver1" HorizontalAlignment="Left" Height="56" Margin="20,0,0,170" VerticalAlignment="Bottom" Width="286" FontSize="36" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontStretch="Expanded" Foreground="Red">
+            <Label x:Name="gameOver1"  HorizontalAlignment="Left" Height="56" Margin="20,0,0,170" VerticalAlignment="Bottom" Width="286" FontSize="36" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontStretch="Expanded" Foreground="Red">
                 <Label.Effect>
                     <DropShadowEffect BlurRadius="2" Color="#FF9C9C9C" Opacity="0.75" ShadowDepth="2"/>
                 </Label.Effect>

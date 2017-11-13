@@ -19,9 +19,9 @@
                     <DropShadowEffect BlurRadius="1" Color="#FFC9C9C9" Opacity="0.75" ShadowDepth="1"/>
                 </Button.Effect>
             </Button>
-            <TextBlock Margin="37,52,30,0" TextWrapping="Wrap" Text="Example: 10   (just whole numbers)" VerticalAlignment="Top" Height="20"/>
-            <TextBlock Margin="37,27,15,0" TextWrapping="Wrap" Text="How much money would you like in your bank?" VerticalAlignment="Top" Height="20"/>
-            <TextBlock Margin="65,0,56,15" TextWrapping="Wrap" Text="Enter 0 to disable placing bets." VerticalAlignment="Bottom" Height="20" FontSize="11" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="textBlock2" Margin="37,52,30,0" TextWrapping="Wrap" Text="Example: 10   (non-negative whole numbers)" VerticalAlignment="Top" Height="20"/>
+            <TextBlock x:Name="textBlock1" Margin="37,27,15,0" TextWrapping="Wrap" Text="How much money would you like in your bank?" VerticalAlignment="Top" Height="20"/>
+            <TextBlock x:Name="textBlock3" Margin="65,0,56,15" TextWrapping="Wrap" Text="Enter 0 to disable placing bets." VerticalAlignment="Bottom" Height="20" FontSize="11" HorizontalAlignment="Center"/>
 
 
         </Grid>

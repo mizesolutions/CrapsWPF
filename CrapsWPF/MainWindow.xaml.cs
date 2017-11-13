@@ -198,7 +198,11 @@ namespace CrapsWPF
             {
                 int temp = Convert.ToInt32(playerBet.Text);
 
-                if (Convert.ToInt32(theGame.GetBank(1)) >= Convert.ToInt32(playerBet.Text))
+                if (Convert.ToInt32(playerBet.Text) < 0)
+                {
+                    throw new Exception();
+                }
+                else if (Convert.ToInt32(theGame.GetBank(1)) >= Convert.ToInt32(playerBet.Text))
                 {
                     btn_SubmitWager.IsEnabled = true;
                     btn_SubmitWager.Focus();
@@ -213,7 +217,7 @@ namespace CrapsWPF
             }
             catch (Exception)
             {
-                MessageBox.Show(Application.Current.MainWindow, "Player wager must be whole numbers only.\n\nExample: 1000", "Wager Error");
+                MessageBox.Show(Application.Current.MainWindow, "Player wager must be non-negative whole numbers only.\n\nExample: 1000", "Wager Error");
                 playerBet.Text = "10";
                 playerBet.Focus();
             }
@@ -338,7 +342,6 @@ namespace CrapsWPF
 
 
         #endregion
-
 
     }
 
