@@ -1,4 +1,20 @@
-﻿using System;
+﻿/*
+ *  CrapsWPF
+ *  Brian Mize
+ *  CSCD 371 Fall 17
+ *  
+ *  This program simulates a game of craps.
+ *  When a session is first started, the player is asked to add money to their starting bank.
+ *  If they add money, they will be able to make bets at the beginning of each round, and play 
+ *  continues until they run out of money or choose to exit the game. The player is not allowed
+ *  to bet an ammount that is larger than their current bank balance. Upon winning a round, the player
+ *  is credited double their bet and the house loses the amount of the bet. Upon losing a round, the 
+ *  player losed the amount of their bet and the house gains the amount of the bet. If they choose to not 
+ *  add money, the betting option will be disabled until they start a new game.
+ *  
+ */
+
+using System;
 using System.Windows;
 using System.Windows.Input;
 using System.Reflection;

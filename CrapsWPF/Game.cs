@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace CrapsWPF
 {
@@ -76,7 +71,7 @@ namespace CrapsWPF
         {
             if(type == 0)
             {
-                player.Bank += value;
+                player.Bank += (value * 2);
                 house.Bank -= value;
             }
             else
